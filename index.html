@@ -3,305 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12B11: Thanh Xuân Rực Rỡ & Quyết Chiến 2026</title>
+    <title>Góc Nhỏ Tình Yêu Của Chúng Mình ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-red: #ff4d4d;
-            --dark-bg: #050505;
-            --glass: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --gold: #ffcc00;
-            --font-main: 'Segoe UI', Roboto, sans-serif;
+            --pastel-pink: #ffd6e0;
+            --pastel-pink-dark: #ffb7c5;
+            --pastel-cream: #fff9f0;
+            --text-color: #5d4037;
+            --font-love: 'Pacifico', cursive;
+            --font-main: 'Quicksand', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: var(--dark-bg);
-            color: #fff;
+            background-color: var(--pastel-cream);
+            color: var(--text-color);
             font-family: var(--font-main);
             overflow-x: hidden;
-            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* --- BACKGROUND ENGINE --- */
-        #bg-canvas {
+        /* --- BACKGROUND HEART SYSTEM --- */
+        #heart-canvas {
             position: fixed;
             top: 0; left: 0;
             z-index: -1;
-            background: radial-gradient(circle at center, #1a0a0a 0%, #050505 100%);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--pastel-cream) 0%, #ffe0e9 100%);
         }
-
-        /* --- NAVIGATION --- */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .logo { font-weight: 900; font-size: 1.5rem; color: var(--primary-red); letter-spacing: 2px; }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 100vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 20px;
-        }
-
-        .class-name {
-            font-size: clamp(4rem, 15vw, 10rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff 30%, var(--primary-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 10px 20px rgba(255,77,77,0.3));
-        }
-
-        .slogan-main {
-            font-size: 1.5rem;
-            color: var(--gold);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-
-        /* --- COUNTDOWN --- */
-        .countdown-container {
-            display: flex;
-            gap: 20px;
             margin-top: 50px;
         }
 
-        .time-box {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 20px;
-            border-radius: 15px;
-            min-width: 100px;
-            backdrop-filter: blur(10px);
+        .main-title {
+            font-family: var(--font-love);
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: #ff6f91;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .couple-names {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .couple-names span { color: #ff6f91; font-weight: 700; }
+
+        /* --- THE VIDEO SECTION --- */
+        .video-container {
+            max-width: 800px;
+            width: 90%;
+            margin: 50px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-frame {
+            background: #fff;
+            padding: 15px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(255,183,197,0.4);
+            border: 3px dashed var(--pastel-pink-dark);
+            transform: rotate(-1deg);
             transition: 0.3s;
         }
 
-        .time-box:hover { transform: translateY(-10px); border-color: var(--primary-red); }
+        .video-frame:hover { transform: rotate(0deg) scale(1.02); }
 
-        .time-num { display: block; font-size: 2.5rem; font-weight: 800; }
-        .time-label { font-size: 0.7rem; text-transform: uppercase; color: var(--primary-red); }
-
-        /* --- CONTENT SECTIONS --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px; }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            display: block;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px; left: 50%;
-            transform: translateX(-50%);
-            width: 100px; height: 3px;
-            background: var(--primary-red);
-        }
-
-        /* --- GLASS CARDS --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--glass);
-            padding: 40px;
-            border-radius: 25px;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(15px);
-            transition: 0.5s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover { background: rgba(255, 77, 77, 0.05); border-color: var(--primary-red); }
-
-        .card h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.5rem; }
-
-        /* --- QUOTE BOX --- */
+        /* --- TYPEWRITER & QUOTES --- */
         .quote-wrapper {
-            background: linear-gradient(45deg, rgba(255,77,77,0.1), rgba(0,0,0,0));
-            padding: 60px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
             border-radius: 30px;
+            max-width: 700px;
+            width: 90%;
+            border: 1px solid rgba(255,214,224,0.5);
             margin: 50px 0;
-            border-left: 5px solid var(--primary-red);
-        }
-
-        #typewriter { font-size: 1.8rem; font-style: italic; min-height: 80px; }
-
-        /* --- THE "GAN" SECTION --- */
-        .solo-gan {
-            background: var(--primary-red);
-            color: #000;
-            padding: 100px 20px;
             text-align: center;
-            clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
-            margin: 100px 0;
+            position: relative;
+        }
+        
+        .quote-wrapper::before {
+            content: '“';
+            font-family: var(--font-love);
+            font-size: 8rem;
+            color: #ffb7c5;
+            position: absolute;
+            top: -20px; left: 20px;
+            opacity: 0.3;
         }
 
-        .solo-gan h2 { font-size: 5rem; font-weight: 900; }
+        #typewriter {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #8d6e63;
+            min-height: 80px;
+            line-height: 1.8;
+        }
+
+        /* --- THE "AUTOPLAY NOTICE" (Ninja style) --- */
+        #start-notice {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 249, 240, 0.95);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        
+        #start-notice .heart-icon {
+            font-size: 8rem;
+            color: #ff6f91;
+            animation: pulse 1.5s infinite;
+        }
+        
+        #start-notice p {
+            font-family: var(--font-love);
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-top: 20px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
         /* --- FOOTER --- */
         footer {
             padding: 50px;
             text-align: center;
-            border-top: 1px solid var(--glass-border);
-            color: #666;
+            color: #bcaaa4;
+            font-size: 0.9rem;
         }
-
-        /* --- ANIMATIONS --- */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
 
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">12B11 LEGEND</div>
-        <div class="nav-links">2023 - 2026</div>
-    </nav>
+    <div id="start-notice">
+        <div class="heart-icon">❤️</div>
+        <p>Gõ cửa trái tim...</p>
+    </div>
 
-    <canvas id="bg-canvas"></canvas>
+    <canvas id="heart-canvas"></canvas>
 
     <div class="hero">
-        <p class="slogan-main">Huyền thoại niên khóa 2023-2026</p>
-        <h1 class="class-name">12B11</h1>
-        <p style="font-size: 1.2rem; letter-spacing: 3px;">NHÂN TÀI CÁ BIỆT - ĐOÀN KẾT LÀ NEVER CHẾT</p>
-        
-        <div class="countdown-container">
-            <div class="time-box">
-                <span class="time-num" id="days">00</span>
-                <span class="time-label">Ngày</span>
-            </div>
-            <div class="time-box">
-                <span class="time-num" id="hours">00</span>
-                <span class="time-label">Giờ</span>
-            </div>
-            <div class="time-box">
-                <span class="time-num" id="minutes">00</span>
-                <span class="time-label">Phút</span>
-            </div>
-            <div class="time-box">
-                <span class="time-num" id="seconds">00</span>
-                <span class="time-label">Giây</span>
-            </div>
+        <h1 class="main-title">Huyền Thoại Tình Yêu</h1>
+        <p class="couple-names">Của <span>[Tên của bạn]</span> & <span>[Tên bạn gái]</span></p>
+        <p style="font-style: italic; opacity: 0.7;">3 Năm Cấp Ba - 1 Đời Thương Nhớ</p>
+    </div>
+
+    <div class="video-container">
+        <div class="video-frame">
+            <video id="love-video" controls loop playsinline>
+                <source src="tinh-yeu.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ xem video này.
+            </video>
         </div>
     </div>
 
-    <div class="container">
-        <div class="reveal">
-            <h2 class="section-title">Lời Nhắn Gửi Thanh Xuân</h2>
-            <div class="quote-wrapper">
-                <div id="typewriter"></div>
-            </div>
-        </div>
-
-        <div class="reveal grid" style="margin-top: 100px;">
-            <div class="card">
-                <h3>📚 Trí Tuệ 12B11</h3>
-                <p>"Những nỗ lực của 12 năm học sẽ được đền đáp. Hãy vững vàng bước vào kỳ thi và đạt kết quả xuất sắc nhất!" </p>
-            </div>
-            <div class="card">
-                <h3>🔥 Nhiệt Huyết</h3>
-                <p>"Chúc các sĩ tử 12B11 đi thi như đi lượm vàng, đề khó mấy cũng thành dễ ợt. Quyết chiến 2026!" </p>
-            </div>
-            <div class="card">
-                <h3>💎 Gắn Kết</h3>
-                <p>"Dù mai này mỗi đứa một phương, đừng bao giờ quên chúng ta đã từng ngồi chung dưới một mái trường." </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="solo-gan">
-        <h2>12B11: ĐỘNG VÀO LÀ ĂN CÁM!</h2>
-        <p style="font-weight: 800; font-size: 1.5rem; margin-top: 20px;">SỐ 2 LÀ KHIÊM TỐN - KHÔNG AI LÀ SỐ 1</p>
-    </div>
-
-    <div class="container reveal">
-        <h2 class="section-title">Hành Trang Sĩ Tử</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Cố Gắng Hết Mình</h3>
-                <p>"Thành công sẽ đến với những ai không ngừng nỗ lực. Đỗ đại học nhé, bạn của tôi ơi!" </p>
-            </div>
-            <div class="card">
-                <h3>Bình Tĩnh Tự Tin</h3>
-                <p>"Kỳ thi này không làm khó được bạn đâu. Hãy như một chiến binh thực thụ của 12B11." </p>
-            </div>
-            <div class="card">
-                <h3>Hẹn Ngày Gặp Lại</h3>
-                <p>"Hẹn gặp lại các bạn ở cổng trường Đại học với nụ cười chiến thắng rạng rỡ nhất!" </p>
-            </div>
-        </div>
+    <div class="quote-wrapper">
+        <div id="typewriter"></div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Tập thể lớp 12B11 - THPT Phú Bài. All rights reserved.</p>
-        <p style="margin-top: 10px;">Thiết kế bởi tình yêu dành cho 12B11 ❤️</p>
+        <p>&copy; 2026 Gửi tặng [Tên bạn gái] - Người con gái tuyệt vời nhất.</p>
+        <p style="margin-top: 10px;">Created with ❤️ by [Tên của bạn]</p>
     </footer>
 
     <script>
-        // --- PETAL SYSTEM (HOA PHUONG ROI) ---
-        const canvas = document.getElementById('bg-canvas');
+        // --- HEART SYSTEM (HIỆU ỨNG TRÁI TIM BAY) ---
+        const canvas = document.getElementById('heart-canvas');
         const ctx = canvas.getContext('2d');
-        // Đã sửa lỗi khai báo mảng trống
-        let width, height, petals = []; 
+        let width, height, hearts = [];
 
         function init() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-            petals = [];
-            for(let i=0; i<100; i++) petals.push(new Petal());
+            hearts = [];
+            for(let i=0; i<50; i++) hearts.push(new Heart());
         }
 
-        class Petal {
+        class Heart {
             constructor() {
                 this.x = Math.random() * width;
-                this.y = Math.random() * height - height;
-                this.size = Math.random() * 5 + 2;
-                this.vY = Math.random() * 1.5 + 0.5;
-                this.vX = Math.random() * 1 - 0.5;
-                this.angle = Math.random() * 360;
-                this.spin = Math.random() * 2 - 1;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 15 + 5;
+                this.vY = Math.random() * 0.8 + 0.2;
+                this.vX = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.1;
+                this.angle = Math.random() * Math.PI * 2;
+                this.spin = Math.random() * 0.02 - 0.01;
             }
             update() {
-                this.y += this.vY;
-                this.x += this.vX + Math.sin(this.y/50);
+                this.y -= this.vY;
+                this.x += this.vX;
                 this.angle += this.spin;
-                if(this.y > height) { this.y = -20; this.x = Math.random()*width; }
+                if(this.y < -50) { this.y = height + 50; this.x = Math.random()*width; }
             }
             draw() {
                 ctx.save();
                 ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle * Math.PI / 180);
-                ctx.fillStyle = '#ff4d4d';
+                ctx.rotate(this.angle);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#ffb7c5';
+                
+                // Vẽ hình trái tim bằng Bezier Curve
                 ctx.beginPath();
-                ctx.ellipse(0, 0, this.size, this.size*1.5, 0, 0, Math.PI*2);
+                ctx.moveTo(0, this.size / 4);
+                ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, this.size / 4);
+                ctx.bezierCurveTo(-this.size / 2, this.size / 2, 0, this.size * 3 / 4, 0, this.size);
+                ctx.bezierCurveTo(0, this.size * 3 / 4, this.size / 2, this.size / 2, this.size / 2, this.size / 4);
+                ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, this.size / 4);
                 ctx.fill();
                 ctx.restore();
             }
@@ -309,46 +260,20 @@
 
         function render() {
             ctx.clearRect(0,0,width,height);
-            petals.forEach(p => { p.update(); p.draw(); });
+            hearts.forEach(h => { h.update(); h.draw(); });
             requestAnimationFrame(render);
         }
 
         window.addEventListener('resize', init);
         init(); render();
 
-        // --- COUNTDOWN SYSTEM (Target June 11, 2026) ---
-        // Sử dụng định dạng an toàn cho mọi trình duyệt
-        const target = new Date(2026, 5, 11, 7, 30, 0).getTime(); 
-
-        function updateClock() {
-            const now = new Date().getTime();
-            const diff = target - now;
-            
-            if(diff < 0) return;
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            // Thêm số 0 phía trước nếu nhỏ hơn 10 cho đẹp
-            document.getElementById('days').innerText = d.toString().padStart(2, '0');
-            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
-        }
-        
-        updateClock();
-        setInterval(updateClock, 1000);
-
-        // --- TYPEWRITER SYSTEM ---
-        // Đã sửa lỗi khai báo mảng chuỗi
+        // --- TYPEWRITER SYSTEM (LỜI NHẮN TÌNH YÊU) ---
         const quotes = [
-            "Cảm ơn vì đã cùng nhau đi qua những ngày mặt trời rực rỡ nhất. ",
-            "3 năm cấp 3 trôi nhanh quá, như tà áo dài trắng khẽ vắt ngang lòng... ",
-            "Giá mà níu được thời gian, để cho đẹp mãi xuân tràn 12B11. ",
-            "Chúng ta không hoàn hảo, nhưng chúng ta là DUY NHẤT. ",
-            "Tạm biệt nhé tuổi học trò thơ dại, 12B11 mãi trong tim tôi! "
+            "Gặp em trong những năm tháng đẹp nhất của tuổi trẻ, đó là may mắn của anh.",
+            "Giá mà có thể biến thời gian thành kẹo ngọt, để mỗi ngày bên em đều thật tan chảy...",
+            "Tạm biệt mái trường, tạm biệt thầy cô, nhưng không bao giờ tạm biệt em!",
+            "Em không phải là người đầu tiên anh thích, nhưng là người duy nhất anh muốn bên cạnh.",
+            "Cảm ơn vì đã cùng anh viết nên câu chuyện thanh xuân tuyệt vời nhất. Yêu em! ❤️"
         ];
         
         let qIdx = 0, cIdx = 0, isErasing = false;
@@ -359,21 +284,34 @@
             const current = quotes[qIdx];
             if(!isErasing) {
                 typeEl.innerText = current.substring(0, cIdx++);
-                if(cIdx > current.length) { isErasing = true; setTimeout(typeEffect, 2000); }
-                else setTimeout(typeEffect, 50);
+                if(cIdx > current.length) { isErasing = true; setTimeout(typeEffect, 3000); }
+                else setTimeout(typeEffect, 60);
             } else {
                 typeEl.innerText = current.substring(0, cIdx--);
-                if(cIdx < 0) { isErasing = false; qIdx = (qIdx+1)%quotes.length; setTimeout(typeEffect, 500); }
-                else setTimeout(typeEffect, 30);
+                if(cIdx < 0) { isErasing = false; qIdx = (qIdx+1)%quotes.length; setTimeout(typeEffect, 800); }
+                else setTimeout(typeEffect, 40);
             }
         }
         typeEffect();
 
-        // --- REVEAL SYSTEM ---
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // --- NINJA STARTER (KÍCH HOẠT KHI CHẠM) ---
+        const startNotice = document.getElementById('start-notice');
+        const loveVideo = document.getElementById('love-video');
+
+        function startDream() {
+            // Tự động phát video
+            loveVideo.play().catch(e => console.log("Video đợi em chạm vào..."));
+            
+            // Ẩn lớp phủ mờ dần
+            startNotice.style.opacity = '0';
+            setTimeout(() => {
+                startNotice.style.display = 'none';
+            }, 500);
+        }
+
+        // Chạm vào bất kỳ đâu để bắt đầu giấc mơ tình yêu
+        startNotice.addEventListener('click', startDream);
+        startNotice.addEventListener('touchstart', startDream);
 
     </script>
 </body>
